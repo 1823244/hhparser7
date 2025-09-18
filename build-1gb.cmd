@@ -1,0 +1,1 @@
+mvn -Dmaven.test.skip=true -P1gb clean package

@@ -1,0 +1,1 @@
+mvn -Dmaven.test.skip=true -Pdev-baryatino-pg clean package
