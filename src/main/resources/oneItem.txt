@@ -1,0 +1,88 @@
+"id" -> {TextNode@8631} ""68232620""
+"premium" -> {BooleanNode@8633} "false"
+"name" -> {TextNode@8635} ""Java Developer""
+"department" -> {NullNode@8637} "null"
+"has_test" -> {BooleanNode@8633} "false"
+"response_letter_required" -> {BooleanNode@8633} "false"
+"area" -> {ObjectNode@8641} "{"id":"1","name":"Москва","url":"https://api.hh.ru/areas/1"}"
+"salary" -> {ObjectNode@8643} "{"from":80000,"to":300000,"currency":"RUR","gross":false}"
+"type" -> {ObjectNode@8645} "{"id":"open","name":"Открытая"}"
+"address" -> {NullNode@8637} "null"
+"response_url" -> {NullNode@8637} "null"
+"sort_point_distance" -> {NullNode@8637} "null"
+"published_at" -> {TextNode@8652} ""2022-08-03T10:56:32+0300""
+"created_at" -> {TextNode@8654} ""2022-08-03T10:56:32+0300""
+"archived" -> {BooleanNode@8633} "false"
+"apply_alternate_url" -> {TextNode@8657} ""https://hh.ru/applicant/vacancy_response?vacancyId=68232620""
+"insider_interview" -> {NullNode@8637} "null"
+"url" -> {TextNode@8660} ""https://api.hh.ru/vacancies/68232620?host=hh.ru""
+"adv_response_url" -> {TextNode@8649} ""https://api.hh.ru/vacancies/68232620/adv_response?host=hh.ru""
+"alternate_url" -> {TextNode@8662} ""https://hh.ru/vacancy/68232620""
+"relations" -> {ArrayNode@8664} "[]"
+"employer" -> {ObjectNode@8666} "{"id":"732308","name":"Орбсофт","url":"https://api.hh.ru/employers/732308","alternate_url":"https://hh.ru/employer/732308","logo_urls":{"original":"https://hhcdn.ru/employer-logo-original/786186.png","240":"https://hhcdn.ru/employer-logo/3585636.png","90":"https://hhcdn.ru/employer-logo/3585635.png"},"vacancies_url":"https://api.hh.ru/vacancies?employer_id=732308","trusted":true}"
+"snippet" -> {ObjectNode@8668} "{"requirement":"Необходимые знания: Знание <highlighttext>Java</highlighttext>. Знание Spring (Spring Boot, Spring JPA, Spring Cloud). Понимание микросервисной архитектуры. Знание SQL. Понимание принципов ООП. ","responsibility":"Участвовать во внутренних и внешних проектах. Разрабатывать новые и поддерживать существующие системы на <highlighttext>Java</highlighttext>."}"
+"contacts" -> {NullNode@8637} "null"
+"schedule" -> {ObjectNode@8671} "{"id":"remote","name":"Удаленная работа"}"
+"working_days" -> {ArrayNode@8673} "[]"
+"working_time_intervals" -> {ArrayNode@8675} "[]"
+"working_time_modes" -> {ArrayNode@8677} "[]"
+"accept_temporary" -> {BooleanNode@8633} "false"
+
+
+"salary" -> {ObjectNode@8643} "{"from":80000,"to":300000,"currency":"RUR","gross":false}"
+ key = "salary"
+ value = {ObjectNode@8643} "{"from":80000,"to":300000,"currency":"RUR","gross":false}"
+  _children = {LinkedHashMap@8687}  size = 4
+   "from" -> {IntNode@8695} "80000"
+   "to" -> {IntNode@8697} "300000"
+   "currency" -> {TextNode@8699} ""RUR""
+   "gross" -> {BooleanNode@8633} "false"
+
+
+"type" -> {ObjectNode@8645} "{"id":"open","name":"Открытая"}"
+ key = "type"
+ value = {ObjectNode@8645} "{"id":"open","name":"Открытая"}"
+  _children = {LinkedHashMap@8704}  size = 2
+   "id" -> {TextNode@8709} ""open""
+   "name" -> {TextNode@8710} ""Открытая""
+
+"employer" -> {ObjectNode@8666} "{"id":"732308","name":"Орбсофт","url":"https://api.hh.ru/employers/732308","alternate_url":"https://hh.ru/employer/732308","logo_urls":{"original":"https://hhcdn.ru/employer-logo-original/786186.png","240":"https://hhcdn.ru/employer-logo/3585636.png","90":"https://hhcdn.ru/employer-logo/3585635.png"},"vacancies_url":"https://api.hh.ru/vacancies?employer_id=732308","trusted":true}"
+ key = "employer"
+ value = {ObjectNode@8666} "{"id":"732308","name":"Орбсофт","url":"https://api.hh.ru/employers/732308","alternate_url":"https://hh.ru/employer/732308","logo_urls":{"original":"https://hhcdn.ru/employer-logo-original/786186.png","240":"https://hhcdn.ru/employer-logo/3585636.png","90":"https://hhcdn.ru/employer-logo/3585635.png"},"vacancies_url":"https://api.hh.ru/vacancies?employer_id=732308","trusted":true}"
+  _children = {LinkedHashMap@8721}  size = 7
+   "id" -> {TextNode@8731} ""732308""
+   "name" -> {TextNode@8732} ""Орбсофт""
+   "url" -> {TextNode@8733} ""https://api.hh.ru/employers/732308""
+   "alternate_url" -> {TextNode@8734} ""https://hh.ru/employer/732308""
+   "logo_urls" -> {ObjectNode@8736} "{"original":"https://hhcdn.ru/employer-logo-original/786186.png","240":"https://hhcdn.ru/employer-logo/3585636.png","90":"https://hhcdn.ru/employer-logo/3585635.png"}"
+   "vacancies_url" -> {TextNode@8738} ""https://api.hh.ru/vacancies?employer_id=732308""
+   "trusted" -> {BooleanNode@8740} "true"
+
+"snippet" -> {ObjectNode@8668} "{"requirement":"Необходимые знания: Знание <highlighttext>Java</highlighttext>. Знание Spring (Spring Boot, Spring JPA, Spring Cloud). Понимание микросервисной архитектуры. Знание SQL. Понимание принципов ООП. ","responsibility":"Участвовать во внутренних и внешних проектах. Разрабатывать новые и поддерживать существующие системы на <highlighttext>Java</highlighttext>."}"
+ key = "snippet"
+ value = {ObjectNode@8668} "{"requirement":"Необходимые знания: Знание <highlighttext>Java</highlighttext>. Знание Spring (Spring Boot, Spring JPA, Spring Cloud). Понимание микросервисной архитектуры. Знание SQL. Понимание принципов ООП. ","responsibility":"Участвовать во внутренних и внешних проектах. Разрабатывать новые и поддерживать существующие системы на <highlighttext>Java</highlighttext>."}"
+  _children = {LinkedHashMap@8746}  size = 2
+   "requirement" -> {TextNode@8752} ""Необходимые знания: Знание <highlighttext>Java</highlighttext>. Знание Spring (Spring Boot, Spring JPA, Spring Cloud). Понимание микросервисной архитектуры. Знание SQL. Понимание принципов ООП. ""
+   "responsibility" -> {TextNode@8754} ""Участвовать во внутренних и внешних проектах. Разрабатывать новые и поддерживать существующие системы на <highlighttext>Java</highlighttext>.""
+
+"address" -> {ObjectNode@8850} "{"city":"Москва","street":"Ленинский проспект","building":"109","description":null,"lat":55.663842,"lng":37.511445,"raw":"Москва, Ленинский проспект, 109","metro":null,"metro_stations":[],"id":"4012066"}"
+ key = "address"
+ value = {ObjectNode@8850} "{"city":"Москва","street":"Ленинский проспект","building":"109","description":null,"lat":55.663842,"lng":37.511445,"raw":"Москва, Ленинский проспект, 109","metro":null,"metro_stations":[],"id":"4012066"}"
+  _children = {LinkedHashMap@8867}  size = 10
+   "city" -> {TextNode@8881} ""Москва""
+   "street" -> {TextNode@8883} ""Ленинский проспект""
+   "building" -> {TextNode@8885} ""109""
+   "description" -> {NullNode@8637} "null"
+   "lat" -> {DoubleNode@8888} "55.663842"
+   "lng" -> {DoubleNode@8890} "37.511445"
+   "raw" -> {TextNode@8892} ""Москва, Ленинский проспект, 109""
+   "metro" -> {NullNode@8637} "null"
+   "metro_stations" -> {ArrayNode@8895} "[]"
+   "id" -> {TextNode@8896} ""4012066""
+
+
+
+
+
+
+

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="dark">
+<head>
+    <div th:include="~{fragments/head::commonHead}"></div>
+    <title th:text="${pageTitle}">Page title</title>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <H3> Tasks list </H3>
+    <p>Today is: <span th:text="${today}">13 February 2011</span></p>
+</div>
+
+<!-- TABLE  -->
+<div class="container">
+
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>PROJECT</th>
+            <th>NAME</th>
+            <th>STARTED</th>
+            <th>FINISHED</th>
+        </tr>
+
+        <tr th:each="item : ${itemsList}">
+            <td>
+                <a href="/tasks/1" th:href="@{~/tasks} + '/' + ${item.get('taskId')}" th:text="${item.get('taskId')}">154</a>
+            </td>
+            <td>
+                <a href="/projects/1" th:href="@{~/projects} + '/' + ${item.get('projectId')}" th:text="${item.get('projectName')}">154</a>
+            </td>
+            <td>
+                <span th:text="${item.get('taskName')}">Process all projects</span>
+            </td>
+            <td>
+                <span th:text="${item.get('startTime')}">2023-01-18</span>
+            </td>
+            <td>
+                <span th:text="${item.get('endTime')}">2023-12-31</span>
+            </td>
+        </tr>
+
+    </table>
+</div>
+
+<div class="container">
+    <div th:replace="~{fragments/footer :: copyright}"></div>
+</div>
+
+</body>
+</html>

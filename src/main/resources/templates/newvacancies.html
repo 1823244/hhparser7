@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="dark">
+<head>
+    <div th:include="~{fragments/head::commonHead}"></div>
+    <title>New Vacancies</title>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <p>Today is: <span th:text="${today}">13 February 2011</span></p>
+    <h4><span>Project: </span> <a th:href="@{/projects/{id}(id=${project.getId()})}"><span th:text="${project.getName()}"></span></a> </h4>
+    <h5>NEW VACANCIES FOR: <span th:text="${dateOfNewVacancies}"></span></h5>
+    <a class="btn btn-secondary mb-3" th:href="@{/projects/{id}(id=${project.getId()})}">Back to Project</a>
+</div>
+
+<div class="container">
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>NAME</th>
+            <th>SALARY</th>
+            <th>REGION</th>
+            <th>EMPLOYER</th>
+        </tr>
+        <tr th:each="vacancy : ${newVacanciesList}">
+            <td th:text="${vacancy.getCount()}">999</td>
+            <td>
+                <a href="" th:href="@{/vacancies/{hhid}(hhid=${vacancy.getHhid()})}" th:text="${vacancy.getName()}">java developer</a>
+            </td>
+            <td th:text="${vacancy.getSalary_netto()}">300 000</td>
+            <td>
+                <span th:text="${vacancy.regionName}">Moscow</span>
+            </td>
+            <td>
+                <a href="" th:href="${vacancy.getEmployer_link()}" th:text="${vacancy.getEmployer()}">Sber</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="container">
+    <a class="btn btn-secondary" th:href="@{/projects/{id}(id=${project.getId()})}">Back to Project</a>
+</div>
+
+<div class="container">
+    <div th:replace="~{fragments/footer :: copyright}"></div>
+</div>
+
+</body>
+</html>

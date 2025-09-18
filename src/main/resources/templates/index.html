@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <div th:include="~{fragments/head::commonHead}"></div>
+    <title th:text="${pageTitle}">Page title</title>
+</head>
+<body>
+<!--<div th:replace="~{fragments/navbar :: navbar}"></div>-->
+<div class="container">
+    <h5> hh parser </h5>
+</div>
+<p></p>
+<p></p>
+<div class="container">
+    <table border="0">
+        <tr>
+            <td><a th:href="@{/login}">Login</a> or </td>
+            <td><a th:href="@{/registration}">Register</a></td>
+        </tr>
+    </table>
+</div>
+<p></p>
+<div class="container">
+    <p>Приложение - агрегатор вакансий с hh.ru</p>
+    Позволяет вести статистику вакансий в разрезе "Проектов" и "Строк поиска"</br>
+    "Проект" - это сущность, которая объединяет несколько "Строк поиска",</br>
+    чтобы охватить все вакансии в каком-то направлении.</br>
+    Например, проект Java может включать такие строки поиска:</br>
+    java developer</br>
+    java architect</br>
+    java teamlead</br>
+    <p></p>
+    <p>Инструкция</p>
+    Добавить проект на странице projects</br>
+    Строка поиска должна соединять слова знаком плюс (+)</br>
+    Пример: java+teamlead</br>
+    Это не баг, так принимает данные api.hh.ru</br>
+    <p></p>
+    <p>Source code here: <a href="https://github.com/1823244/hhparser6">https://github.com/1823244/hhparser6</a>
+    </p>
+</div>
+
+
+<div class="container">
+    <div th:replace="~{fragments/footer :: copyright}"></div>
+</div>
+
+<div class="container">
+    <p>Today is: <span th:text="${today}">13 February 2011</span></p>
+</div>
+
+</body>
+</html>

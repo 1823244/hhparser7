@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="dark">
+<head>
+    <div th:include="~{fragments/head::commonHead}"></div>
+    <title th:text="${pageTitle}">Page title</title>
+</head>
+
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <p>Today is: <span th:text="${today}">13 February 2011</span></p>
+</div>
+
+<div>
+    <a href="hh.ru" th:href="@{${url}}">Ссылка на вакансию</a>
+</div>
+<div class="container">
+    <table class="table table-bordered">
+        <tr>
+            <th>Attribute</th>
+            <th>Value</th>
+        </tr>
+        <tr th:each="item : ${attributesMap}">
+            <td th:text="${item.getKey()}">attr name</td>
+            <td th:text="${item.getValue()}">attr value</td>
+        </tr>
+        <tr th:remove="all">
+            <td th:text="${item.name}">attr name</td>
+            <td th:text="${item.value}">attr value</td>
+        </tr>
+        <tr th:remove="all">
+            <td th:text="${item.name}">attr name</td>
+            <td th:text="${item.value}">attr value</td>
+        </tr>
+    </table>
+</div>
+
+<div class="container">
+    <div th:replace="~{fragments/footer :: copyright}"></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="dark">
+<head>
+    <div th:include="~{fragments/head::commonHead}"></div>
+    <title th:text="${pageTitle}">Page title</title>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <p>Today is: <span th:text="${today}">13 February 2011</span></p>
+</div>
+
+<div class="container">
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+    </tr>
+    <tr th:each="item : ${itemsList}">
+        <td>
+            <a href="/book/1" th:href="@{~/book} + '/' + ${item.id}" th:text="${item.id}">123456</a>
+        </td>
+        <td th:text="${item.name}">BOOK: SFCREPO</td>
+    </tr>
+    <tr th:remove="all">
+        <td th:text="${item.id}">987654</td>
+        <td th:text="${item.name}">BOOK: SFCPropTrade</td>
+    </tr>
+    <tr th:remove="all">
+        <td th:text="${item.id}">556600</td>
+        <td th:text="${item.name}">BOOK: SFCSWAP</td>
+    </tr>
+</table>
+</div>
+
+<div class="container">
+    <div th:replace="~{fragments/footer :: copyright}"></div>
+</div>
+
+</body>
+</html>

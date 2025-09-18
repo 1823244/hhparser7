@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="dark">
+<head>
+    <div th:include="~{fragments/head::commonHead}"></div>
+    <title th:text="${pageTitle}">Page title</title>
+</head>
+
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <p>Today is: <span th:text="${today}">13 February 2011</span></p>
+</div>
+
+<H3> Project: <span th:text="${project.getName()}"></span></H3>
+<H4> Search text: <span th:text="${searchtext.getText()}"></span> </H4>
+
+<!-- EDIT BUTTON -->
+<div class="container">
+    <button type="button" class="btn btn-secondary">
+        <!--<a th:href="@{/projects/{id}/edit(id=${project.getId()})}">Edit</a>-->
+    </button>
+</div>
+
+<!-- OPEN VACS REPORT -->
+<div class="container">
+
+    <a th:href="@{/searchtexts/openvacs/{sid}/project/{id}(id=${project.getId()},sid=${searchtext.getId()})}+'?page=1'" >Open vacancies for: <span th:text="${searchtext.getText()}"></span></a>
+
+</div>
+
+
+
+
+<!-- DELETE BUTTON -->
+<div class="container">
+    <form th:method="DELETE" th:action="@{/searchtexts/{id}/project/{pid}(id=${searchtext.getId()},pid=${project.getId()})}">
+        <input class="btn btn-primary" type="submit" value="Delete"/>
+    </form>
+</div>
+
+
+
+
+<div class="container">
+    <div th:replace="~{fragments/footer :: copyright}"></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="dark">
+<head>
+    <div th:include="~{fragments/head::commonHead}"></div>
+    <title th:text="${pageTitle}">Page title</title>
+</head>
+
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <p>Today is: <span th:text="${today}">13 February 2011</span></p>
+</div>
+
+<div class="container">
+    <form th:method="POST" th:action="@{/searchtexts/new/project/{id}(id=${project.getId()})}" th:object="${searchtext}">
+        <label for="name">Enter search text: </label>
+        <input type="text" th:field="*{text}" id="name"/>
+        <label for="projectId">Project ID: </label>
+        <input type="text" th:field="*{projectId}" id="projectId"/>
+        <br/>
+        <input type="submit" value="Create"/>
+    </form>
+</div>
+
+<div class="container">
+    <div th:replace="~{fragments/footer :: copyright}"></div>
+</div>
+
+</body>
+</html>

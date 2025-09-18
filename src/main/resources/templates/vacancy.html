@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="dark">
+<head>
+    <div th:include="~{fragments/head::commonHead}"></div>
+    <title th:text="${pageTitle}">Page title</title>
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <p>Today is: <span th:text="${today}">13 February 2011</span></p>
+    <H3> Vacancy: <span th:text="${vacancyDto.getName()}"></span></H3>
+</div>
+
+
+<div class="container">
+    <p></p>
+    <div class="container">
+        <a th:href="${details.get('alternate_url')}" target="_blank"><span th:text="${details.get('alternate_url')}">alternate_url</span></a>
+    </div>
+    <p></p>
+    <H5> hh ID: <span th:text="${vacancyDto.getHhid()}"></span></H5>
+    <H5> local ID: <span th:text="${vacancyDto.getId()}"></span></H5>
+    <H5> Compensation to: <span th:text="${vacancyDto.getSalary_to()}"></span></H5>
+    <!--todo сделать ссылку на работодателя-->
+    <H5> Employer: <span th:text="${employerDto.getName()}"></span></H5>
+    <!--todo сделать кнопку "Добавить в <Вакансии в работе>"-->
+    <!--todo сделать кнопку "Добавить в <Избранные вакансии>"-->
+</div>
+<!-- button ToInwork-->
+<div class="container">
+    <form th:method="POST" th:action="@{/inwork/{id}(id=${vacancyDto.getId()})}" >
+        <input class="btn btn-secondary" type="submit" value="To inwork" />
+    </form>
+</div>
+<!-- TO BLACK LIST -->
+<div class="container">
+    <form th:method="POST" th:action="@{/blacklist/add/{id}(id=${vacancyDto.getId()})}" >
+        <input class="btn btn-secondary" type="submit" th:value="${ToBlackListCaption}" />
+    </form>
+</div>
+
+<p></p>
+
+<p></p>
+<!-- DESCRIPTION -->
+<div class="container">
+    <p>DESCRIPTION</p>
+    <span th:utext="${descr}" th:remove="tag">descr</span>
+</div>
+<p></p>
+<hr />
+<div class="container">
+    schedule
+</div>
+<p></p>
+<div class="container">
+    employment
+</div>
+<p></p>
+<div class="container">
+    address
+</div>
+<p></p>
+<div class="container">
+    professional_roles
+</div>
+<p></p>
+<div class="container">
+    employer
+</div>
+<p></p>
+<div class="container">
+    published_at
+</div>
+<p></p>
+<div class="container">
+    <div th:replace="~{fragments/footer :: copyright}"></div>
+</div>
+
+</body>
+</html>

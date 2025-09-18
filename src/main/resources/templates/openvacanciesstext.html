@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="dark">
+<head>
+    <div th:include="~{fragments/head::commonHead}"></div>
+    <title th:text="${pageTitle}">Page title</title>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <p>Today is: <span th:text="${today}">13 February 2011</span></p>
+</div>
+
+<!--  TITLE    -->
+<div class="container">
+    <h4><span>Project: </span> <a th:href="@{/projects/{id}(id=${projectDto.getId()})}"><span th:text="${projectDto.getName()}"></span></a> </h4>
+    <h5><span>Search text: </span> <span th:text="${stextDto.text}"></span></a> </h5>
+</div>
+
+<!--  STATISTICS    -->
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Salary Statistics</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Salary Range</th>
+                            <th>Count</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Total vacancies</strong></td>
+                            <td><span th:text="${total_vacs}">1879</span></td>
+                            <td>100%</td>
+                        </tr>
+                        <tr class="table-success">
+                            <td>Over 500,000 ₽</td>
+                            <td><span th:text="${over500}">1879</span></td>
+                            <td><span th:text="${#numbers.formatDecimal(over500 * 100.0 / total_vacs, 1, 1)}">0.0</span>%</td>
+                        </tr>
+                        <tr>
+                            <td>Over 400,000 ₽</td>
+                            <td><span th:text="${over400}">1879</span></td>
+                            <td><span th:text="${#numbers.formatDecimal(over400 * 100.0 / total_vacs, 1, 1)}">0.0</span>%</td>
+                        </tr>
+                        <tr>
+                            <td>Over 350,000 ₽</td>
+                            <td><span th:text="${over350}">1879</span></td>
+                            <td><span th:text="${#numbers.formatDecimal(over350 * 100.0 / total_vacs, 1, 1)}">0.0</span>%</td>
+                        </tr>
+                        <tr>
+                            <td>Over 300,000 ₽</td>
+                            <td><span th:text="${over300}">1879</span></td>
+                            <td><span th:text="${#numbers.formatDecimal(over300 * 100.0 / total_vacs, 1, 1)}">0.0</span>%</td>
+                        </tr>
+                        <tr>
+                            <td>Over 250,000 ₽</td>
+                            <td><span th:text="${over250}">1879</span></td>
+                            <td><span th:text="${#numbers.formatDecimal(over250 * 100.0 / total_vacs, 1, 1)}">0.0</span>%</td>
+                        </tr>
+                        <tr>
+                            <td>Over 200,000 ₽</td>
+                            <td><span th:text="${over200}">1879</span></td>
+                            <td><span th:text="${#numbers.formatDecimal(over200 * 100.0 / total_vacs, 1, 1)}">0.0</span>%</td>
+                        </tr>
+                        <tr class="table-warning">
+                            <td>Hidden salary</td>
+                            <td><span th:text="${hiddensalary}">1879</span></td>
+                            <td><span th:text="${#numbers.formatDecimal(hiddensalary * 100.0 / total_vacs, 1, 1)}">0.0</span>%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-2">
+                <small class="text-muted">Total pages: <span th:text="${total_pages}">127</span></small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--  NAVIGATION   (PAGES)    -->
+<div class="container">
+    <a class="btn btn-secondary" href="prev" th:href="@{/searchtexts/openvacs/{sid}/project/{id}(id=${project_id},sid=${stext_id})} + '?page=' + (${pageNumber}-1)">prev&nbsp;</a>
+    <a class="btn btn-primary" href="curr" th:href="@{/searchtexts/openvacs/{sid}/project/{id}(id=${project_id},sid=${stext_id})} + '?page=1'" th:text="${pageNumberText}">current page is 12</a>
+    <a class="btn btn-secondary" href="next" th:href="@{/searchtexts/openvacs/{sid}/project/{id}(id=${project_id},sid=${stext_id})} + '?page=' + (${pageNumber}+1)">&nbsp;next</a>
+</div>
+<!--  TABLE -->
+<div class="container">
+    <table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>NAME</th>
+        <th>SALARY</th>
+        <th>EMPLOYER</th>
+        <th>ACTION</th>
+    </tr>
+
+    <tr th:each="item : ${itemsList}">
+        <td th:text="${item.getCount()}">999</td>
+        <td>
+            <a href="" th:href="@{/vacancies/{hhid}(hhid=${item.getHhid()})}" th:text="${item.getName()}">java developer</a>
+        </td>
+        <td th:text="${item.getSalary_netto()}">300 000</td>
+        <td>
+            <a href="" th:href="${item.getEmployer_link()}" th:text="${item.getEmployer()}">Sber</a>
+        </td>
+        <td>
+            <input type="submit" value="To blacklist" onclick="sendToBlacklist();"/>
+        </td>
+    </tr>
+
+</table>
+</div>
+<!--  NAVIGATION   (PAGES)    -->
+<div class="container">
+    <a class="btn btn-secondary" href="prev" th:href="@{/searchtexts/openvacs/{sid}/project/{id}(id=${project_id},sid=${stext_id})} + '?page=' + (${pageNumber}-1)">prev&nbsp;</a>
+    <a class="btn btn-primary" href="curr" th:href="@{/searchtexts/openvacs/{sid}/project/{id}(id=${project_id},sid=${stext_id})} + '?page=1'" th:text="${pageNumberText}">current page is 12</a>
+    <a class="btn btn-secondary" href="next" th:href="@{/searchtexts/openvacs/{sid}/project/{id}(id=${project_id},sid=${stext_id})} + '?page=' + (${pageNumber}+1)">&nbsp;next</a>
+</div>
+
+<div class="container">
+    <div th:replace="~{fragments/footer :: copyright}"></div>
+</div>
+
+
+</body>
+</html>

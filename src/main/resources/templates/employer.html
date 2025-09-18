@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="dark">
+<head>
+    <div th:include="~{fragments/head::commonHead}"></div>
+    <title th:text="${pageTitle}">Page title</title>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <p>Today is: <span th:text="${today}">13 February 2011</span></p>
+</div>
+
+<p></p>
+
+<!-- DATA  -->
+<div class="container">
+
+    <a th:href="@{~/employers} + '/' + ${employerDto.getId()}" th:text="${employerDto.getName()}">Google</a>
+    <p></p>
+
+      <a th:href="@{~/employers} + '/' + ${employerDto.getId()}" th:text="${employerDto.getId()}">154</a>
+    <p></p>
+      <a th:href="@{~/employers} + '/' + ${employerDto.getId()}" th:text="${employerDto.getHhid()}">4496</a>
+    <p></p>
+      <a href="" th:href="@{${employerDto.getUrl()}}" th:text="${employerDto.getName()}">МТС Банк</a>
+    <p></p>
+      <form th:action="@{/employers/{hhid}(hhid=${employerDto.getHhid()})}" th:method="DELETE">
+          <input class="btn btn-secondary" type="submit" value="Delete"/>
+      </form>
+    <p></p>
+</div>
+
+<div class="container">
+    <div th:replace="~{fragments/footer :: copyright}"></div>
+</div>
+
+</body>
+</html>

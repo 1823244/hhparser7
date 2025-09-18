@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="dark">
+<head>
+    <div th:include="~{fragments/head::commonHead}"></div>
+    <title th:text="${pageTitle}">Page title</title>
+</head>
+
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <p>Today is: <span th:text="${today}">13 February 2011</span></p>
+</div>
+
+<!-- NAME -->
+
+<div class="container">
+    <form th:method="PATCH" th:action="@{/projects/{id}(id=${project.getId()})}" th:object="${project}">
+        <label for="name">Enter project's name: </label>
+        <input type="text" th:field="*{name}" id="name"/>
+        </br>
+        <label th:text="'Project ID: '+${project.getId()}"> project id </label>
+        <br/>
+        <input type="submit" value="Save"/>
+    </form>
+</div>
+
+<!--SEARCH TEXTS TABLE -->
+<h3>Search texts <span class="badge bg-secondary"></span></h3>
+
+<!-- BUTTON   NEW    -->
+<div class="container">
+    <form method="GET" th:action="@{/searchtexts/new/project/{id}(id=${project.getId()})}">
+        <button type="submit" class="btn btn-lg btn-danger" title="New">NEW</button>
+    </form>
+</div>
+
+<!-- TABLE -->
+<div class="container">
+    <table class="table table-bordered">
+        <tr>
+            <th>text</th>
+            <th>action</th>
+        </tr>
+
+
+        <tr th:each="item : ${searchTextsList}">
+            <td th:text="${item.getText()}">attr name</td>
+            <td>
+                <!-- DELETE BUTTON -->
+                <div class="container">
+                    <form th:method="DELETE" th:action="@{/searchtexts/{sid}/project/{id}(sid=${item.getId()},id=${project.getId()})}" > <!--th:object="${project}"-->
+
+                        <input class="btn btn-secondary" type="submit" value="Delete"/>
+                    </form>
+                </div>
+            </td>
+        </tr>
+
+    </table>
+</div>
+
+
+<div class="container">
+    <div th:replace="~{fragments/footer :: copyright}"></div>
+</div>
+
+</body>
+</html>

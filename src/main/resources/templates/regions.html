@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="dark">
+<head>
+    <div th:include="~{fragments/head::commonHead}"></div>
+    <title th:text="${pageTitle}">Page title</title>
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <p>Today is: <span th:text="${today}">13 February 2011</span></p>
+    <H3>Regions</H3>
+</div>
+
+
+<!-- START SEARCH -->
+<div class="container">
+
+    <form th:method="POST" th:action="@{/regions}" >
+        <input class="btn btn-secondary" type="submit" value="Import regions" />
+    </form>
+
+</div>
+
+
+
+<div class="container">
+    <div th:replace="~{fragments/footer :: copyright}"></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="dark">
+<head>
+    <div th:include="~{fragments/head::commonHead}"></div>
+    <title th:text="${pageTitle}">Page title</title>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <p>Today is: <span th:text="${today}">13 February 2011</span></p>
+</div>
+<!-- TASK LABEL -->
+<div class="container">
+    <H5> Last task: <span th:text="${task.getName()}+' - started at: '+${task.getStartTime()}+' - finished at: '+${task.getEndTime()}"></span></H5>
+</div>
+<!-- BUTTON   NEW    -->
+
+<div class="container">
+    <form method="GET" th:action="@{/projects/new}">
+
+        <button type="submit" class="btn btn-lg btn-danger" title="New">NEW</button>
+    </form>
+</div>
+
+<!-- TABLE  -->
+<div class="container">
+
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>VAC COUNT</th>
+        </tr>
+        <tr th:each="item : ${itemsList}">
+            <td>
+                <a href="/projects/1" th:href="@{~/projects} + '/' + ${item.get('project').getId()}" th:text="${item.get('project').getId()}">123456</a>
+            </td>
+            <td>
+                <a href="/projects/1" th:href="@{~/projects} + '/' + ${item.get('project').getId()}" th:text="${item.get('project').getName()}">123456</a>
+            </td>
+            <td>
+                <span th:text="${item.get('total_vacs')}">123456</span>
+            </td>
+        </tr>
+
+        <tr th:remove="all">
+            <td th:text="${item.id}">1</td>
+            <td th:text="${item.name}">Java</td>
+        </tr>
+        <tr th:remove="all">
+            <td th:text="${item.id}">2</td>
+            <td th:text="${item.name}">1C</td>
+        </tr>
+    </table>
+</div>
+<!-- START SEARCH -->
+<div class="container">
+
+    <form th:method="POST" th:action="@{/projects/search}" >
+        <input class="btn btn-secondary" type="submit" value="Search ALL" />
+    </form>
+
+</div>
+
+<div class="container">
+    <div th:replace="~{fragments/footer :: copyright}"></div>
+</div>
+
+</body>
+</html>

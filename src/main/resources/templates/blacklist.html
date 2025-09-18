@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="dark">
+<head>
+    <div th:include="~{fragments/head::commonHead}"></div>
+    <title th:text="${pageTitle}">Page title</title>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+<div th:include="~{fragments/body :: bodyfrag}"></div>
+
+<div class="container">
+    <H3> Black list </H3>
+    <p>Today is: <span th:text="${today}">13 February 2011</span></p>
+</div>
+
+<!-- TABLE  -->
+<div class="container">
+
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>SALARY</th>
+            <th>EMPLOYER</th>
+            <th>ACTION</th>
+        </tr>
+
+        <tr th:each="item : ${itemsList}">
+            <td>
+                <a href="" th:href="@{/vacancies/{hhid}(hhid=${item.getHhid()})}" th:text="${item.getHhid()}" target="_blank">45678900987</a>
+            </td>
+            <td>
+                <a href="" th:href="${item.getUrl()}" th:text="${item.getName()}" target="_blank">java developer</a>
+            </td>
+            <td th:text="${item.getSalary_netto()}">300 000</td>
+            <td>
+                <a href="" th:href="${item.getEmployer_link()}" th:text="${item.getEmployer()}" target="_blank">Sber</a>
+            </td>
+            <td>
+                <form th:method="POST" th:action="@{/blacklist/remove/{id}(id=${item.getId()})}" >
+                    <input class="btn btn-secondary" type="submit" value="Remove" />
+                </form>
+            </td>
+        </tr>
+
+    </table>
+</div>
+
+<div class="container">
+    <div th:replace="~{fragments/footer :: copyright}"></div>
+</div>
+
+</body>
+</html>

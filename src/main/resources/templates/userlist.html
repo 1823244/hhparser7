@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="dark">
+<head>
+    <div th:include="~{fragments/head::commonHead}"></div>
+    <title th:text="${pageTitle}">Page title</title>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <p>Today is: <span th:text="${today}">13 February 2011</span></p>
+</div>
+
+<div class="container">
+    <H5> User list</H5>
+</div>
+
+<!-- TABLE  -->
+<div class="container">
+
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>ACTIVE</th>
+            <th>ROLES</th>
+        </tr>
+        <tr th:each="item : ${userlist}">
+            <td>
+                <a href="/user/1" th:href="@{~/user} + '/' + ${item.getId()}" th:text="${item.getId()}">123456</a>
+            </td>
+            <td>
+                <a href="/user/1" th:href="@{~/user} + '/' + ${item.getId()}" th:text="${item.getUsername()}">John</a>
+            </td>
+            <td>
+                <a href="/user/1" th:href="@{~/user} + '/' + ${item.getId()}" th:text="${item.getActive()}">true</a>
+            </td>
+            <td>
+
+            </td>
+        </tr>
+
+    </table>
+</div>
+
+<div class="container">
+    <div th:replace="~{fragments/footer :: copyright}"></div>
+</div>
+
+</body>
+</html>

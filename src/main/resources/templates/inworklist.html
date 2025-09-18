@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="dark">
+<head>
+    <div th:include="~{fragments/head::commonHead}"></div>
+    <title th:text="${pageTitle}">Page title</title>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <p>Today is: <span th:text="${today}">13 February 2011</span></p>
+    <H3>Vacancies in work</H3>
+</div>
+
+
+<div class="container">
+    <table class="table table-bordered">
+        <tr>
+            <th>Vacancy hh id</th>
+            <th>Name</th>
+        </tr>
+        <tr th:each="item : ${inworkList}">
+            <td th:text="${item.getVacancyHhid()}">attr name</td>
+            <td th:text="${item.getVacancyId()}">attr value</td>
+        </tr>
+        <tr th:remove="all">
+            <td th:text="${item.name}">attr name</td>
+            <td th:text="${item.value}">attr value</td>
+        </tr>
+        <tr th:remove="all">
+            <td th:text="${item.name}">attr name</td>
+            <td th:text="${item.value}">attr value</td>
+        </tr>
+    </table>
+</div>
+
+
+
+<div class="container">
+    <div th:replace="~{fragments/footer :: copyright}"></div>
+</div>
+
+</body>
+</html>

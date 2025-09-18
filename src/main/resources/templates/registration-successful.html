@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="dark">
+<head>
+    <div th:include="~{fragments/head::commonHead}"></div>
+    <title>Successfully registered</title>
+</head>
+<body>
+<!--<div th:replace="~{fragments/navbar :: navbar}"></div>-->
+<div class="container">
+    <h5> hh parser </h5>
+</div>
+
+
+<div class="container">
+    <p>Successfully registered!</p>
+    <p>Now you can log in</p>
+</div>
+
+<div class="container">
+    <p></p><a th:href="@{/login}">Login</a></p>
+</div>
+
+<div class="container">
+    <div th:replace="~{fragments/footer :: copyright}"></div>
+</div>
+
+<div class="container">
+    <p>Today is: <span th:text="${today}">13 February 2011</span></p>
+</div>
+
+</body>
+</html>

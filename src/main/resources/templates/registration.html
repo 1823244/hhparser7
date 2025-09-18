@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="dark">
+<head>
+    <div th:include="~{fragments/head::commonHead}"></div>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+
+</head>
+<body>
+<div th:if="${param.error}">
+    Invalid username or password
+</div>
+<div th:if="${param.logout}">
+    You've been logged out
+</div>
+
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+            Register
+        </div>
+    </div>
+</div>
+
+<div th:if="${message}">
+    <span th:text="${message}"> Username already exists...</span>
+</div>
+
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+            <div class="card px-5 py-5" id="form1">
+                <form th:action="@{/registration}" th:method="POST">
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input type="text" id="form2Example1" class="form-control" name="username" />
+                        <label class="form-label" for="form2Example1">Email address</label>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <input type="password" id="form2Example2" class="form-control" name="password" />
+                        <label class="form-label" for="form2Example2">Password</label>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block mb-4 w-100">Register</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
