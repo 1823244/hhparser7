@@ -16,7 +16,7 @@ NC='\033[0m' # No Color
 APP_DIR="/opt/hhparser"
 BACKUP_DIR="${APP_DIR}/backups"
 REGISTRY="ghcr.io"
-IMAGE_NAME="your-github-username/hhparser7"  # Замените на ваш GitHub username
+IMAGE_NAME="1823244/hhparser7"  # Замените на ваш GitHub username
 IMAGE_TAG="${1:-latest}"
 
 # Функции логирования
