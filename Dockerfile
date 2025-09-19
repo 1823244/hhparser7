@@ -34,15 +34,15 @@ RUN apk add --no-cache curl && \
 WORKDIR /app
 
 # Создаем директории для логов и данных
-RUN mkdir -p /log-hhparser5 && \
-    chown -R hhparser:hhparser /log-hhparser5 && \
+RUN mkdir -p /log-hhparser7 && \
+    chown -R hhparser:hhparser /log-hhparser7 && \
     chown -R hhparser:hhparser /app
 
 # Копируем собранное приложение из первого этапа
-COPY --from=builder /app/target-ruvds/hhparser5.jar /app/hhparser5.jar
+COPY --from=builder /app/target-ruvds/hhparser7.jar /app/hhparser7.jar
 
 # Изменяем владельца файлов
-RUN chown hhparser:hhparser /app/hhparser5.jar
+RUN chown hhparser:hhparser /app/hhparser7.jar
 
 # Переключаемся на непривилегированного пользователя
 USER hhparser
@@ -61,4 +61,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
     CMD curl -f http://localhost:9595/actuator/health || exit 1
 
 # Запуск приложения
-CMD ["sh", "-c", "java $JAVA_OPTS -jar hhparser5.jar"]
+CMD ["sh", "-c", "java $JAVA_OPTS -jar hhparser7.jar"]
