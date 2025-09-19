@@ -28,6 +28,11 @@ UI реализован на Thymeleaf.
   Запуск
   
 nohup java -jar hhparser5.jar > output.log 2>&1 &
+
+  Запуск из исходников (для теста)  
+
+mvn spring-boot:run
+  
 ```
 
 ### Команды Postgres

@@ -11,9 +11,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ens.hhparser5</groupId>
-	<artifactId>hhparser5</artifactId>
+	<artifactId>hhparser7</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>hhparser5</name>
+	<name>hhparser7</name>
 	<description>rest-client for hh.ru and 1C</description>
 	<properties>
 		<java.version>17</java.version>
@@ -147,8 +147,8 @@
 
 
 	<build>
-		<directory>target-hhparser5</directory>
-		<finalName>hhparser5</finalName>
+		<directory>target-hhparser7</directory>
+		<finalName>hhparser7</finalName>
 
 		<plugins>
 			<plugin>

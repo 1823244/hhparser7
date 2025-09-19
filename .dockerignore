@@ -1,0 +1,45 @@
+# Dockerignore для оптимизации сборки образа
+
+# Maven/сборка
+target*/
+*.jar
+*.war
+
+# IDE файлы
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# OS файлы
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Логи
+*.log
+logs/
+
+# Временные файлы
+*.tmp
+*.temp
+
+# Documentation
+*.md
+api-description-*.html
+
+# Scripts (кроме build scripts, которые нужны)
+upd.cmd
+
+# Test resources (не нужны в production)
+src/test/
+
+# Camunda files (если не используются в runtime)
+camunda/
+
+# Build profiles directories
+target-*/

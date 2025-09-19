@@ -1,0 +1,99 @@
+name: Manual Deploy to Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+        - production
+        - staging
+      skip_tests:
+        description: 'Skip tests'
+        required: false
+        default: false
+        type: boolean
+      docker_tag:
+        description: 'Docker image tag (leave empty for latest)'
+        required: false
+        type: string
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  manual-deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 17
+      if: ${{ !inputs.skip_tests }}
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Run tests
+      if: ${{ !inputs.skip_tests }}
+      run: mvn clean test
+
+    - name: Determine Docker tag
+      id: tag
+      run: |
+        if [ -n "${{ inputs.docker_tag }}" ]; then
+          echo "tag=${{ inputs.docker_tag }}" >> $GITHUB_OUTPUT
+        else
+          echo "tag=latest" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Deploy to server
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.PROD_HOST }}
+        username: ${{ secrets.PROD_USER }}
+        key: ${{ secrets.PROD_SSH_KEY }}
+        port: ${{ secrets.PROD_PORT }}
+        script: |
+          cd /opt/hhparser || exit 1
+          
+          # Логинимся в registry
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+          
+          # Экспортируем переменную с тегом
+          export IMAGE_TAG=${{ steps.tag.outputs.tag }}
+          
+          # Останавливаем контейнеры
+          docker compose -f docker-compose.prod.yml down
+          
+          # Если указан конкретный тег, обновляем его
+          if [ "$IMAGE_TAG" != "latest" ]; then
+            docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$IMAGE_TAG
+            docker tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$IMAGE_TAG hhparser-app:latest
+          else
+            docker compose -f docker-compose.prod.yml pull
+          fi
+          
+          # Запускаем контейнеры
+          docker compose -f docker-compose.prod.yml up -d
+          
+          # Проверяем результат
+          sleep 30
+          curl -f http://localhost:9595/actuator/health || exit 1
+          
+          echo "Manual deployment completed successfully!"
+
+    - name: Summary
+      run: |
+        echo "## Deployment Summary" >> $GITHUB_STEP_SUMMARY
+        echo "- **Environment**: ${{ inputs.environment }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **Docker Tag**: ${{ steps.tag.outputs.tag }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **Tests Skipped**: ${{ inputs.skip_tests }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **Status**: ✅ Success" >> $GITHUB_STEP_SUMMARY
