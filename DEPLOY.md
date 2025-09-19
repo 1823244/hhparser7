@@ -92,6 +92,8 @@ chmod +x setup-server.sh
 
 Перейдите в `Settings > Secrets and variables > Actions` и добавьте:
 
+> 📖 **Подробная инструкция**: [GITHUB_SETUP.md](GITHUB_SETUP.md)
+
 ```
 PROD_HOST=193.108.113.75
 PROD_USER=hhparser

@@ -52,6 +52,8 @@ nano .env  # Отредактируйте под ваши настройки
 
 ### Добавьте Secrets в GitHub:
 
+> 📖 **Подробно**: [GITHUB_SETUP.md](GITHUB_SETUP.md)
+
 ```
 Settings > Secrets and variables > Actions:
 
