@@ -42,7 +42,7 @@ services:
       SPRING_RABBITMQ_VIRTUAL_HOST: ${RABBITMQ_VHOST:-}
       JAVA_OPTS: "-Xmx1g -Xms512m -XX:+UseG1GC"
     ports:
-      - "9696:9595"
+      - "9696:9696"
     volumes:
       - logs_data:/log-hhparser5
     networks:
@@ -52,7 +52,7 @@ services:
       postgres:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9595/actuator/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:9696/actuator/health"]
       interval: 30s
       timeout: 10s
       retries: 3
