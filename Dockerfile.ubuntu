@@ -1,4 +1,4 @@
-# Dockerfile для hhparser5 приложения
+# Dockerfile для hhparser5 приложения (Ubuntu версия)
 # Используем многоступенчатую сборку для оптимизации размера образа
 
 # Этап 1: Сборка приложения
@@ -22,13 +22,17 @@ COPY src ./src
 # Собираем приложение с профилем для продакшена
 RUN mvn clean package -Dmaven.test.skip=true -Pruvds
 
-# Этап 2: Создание финального образа
-FROM eclipse-temurin:17-jre-alpine
+# Этап 2: Создание финального образа (Ubuntu версия)
+FROM eclipse-temurin:17-jre-jammy
 
-# Устанавливаем curl для healthcheck и создаем пользователя для безопасности
-RUN apk add --no-cache curl && \
-    addgroup -S hhparser && \
-    adduser -S hhparser -G hhparser
+# Обновляем пакеты и устанавливаем curl
+RUN apt-get update && \
+    apt-get install -y curl && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Создаем пользователя для безопасности
+RUN groupadd -r hhparser && useradd -r -g hhparser hhparser
 
 # Устанавливаем рабочую директорию
 WORKDIR /app
