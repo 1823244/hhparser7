@@ -2,7 +2,7 @@
 # Используем многоступенчатую сборку для оптимизации размера образа
 
 # Этап 1: Сборка приложения
-FROM maven:3.9.6-openjdk-17-slim AS builder
+FROM maven:3.9.6-eclipse-temurin-17-alpine AS builder
 
 # Устанавливаем рабочую директорию
 WORKDIR /app
