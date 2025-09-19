@@ -86,7 +86,7 @@ jobs:
           
           # Проверяем результат
           sleep 30
-          curl -f http://localhost:9595/actuator/health || exit 1
+          curl -f http://localhost:9696/actuator/health || exit 1
           
           echo "Manual deployment completed successfully!"
 

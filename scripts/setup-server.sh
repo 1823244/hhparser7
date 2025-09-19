@@ -122,7 +122,7 @@ ufw allow 80/tcp
 ufw allow 443/tcp
 
 # Разрешаем порт приложения (только для тестирования)
-ufw allow 9595/tcp
+ufw allow 9696/tcp
 
 # Включаем файрвол
 ufw --force enable

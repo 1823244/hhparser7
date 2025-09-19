@@ -32,7 +32,7 @@ services:
     container_name: hhparser-app
     environment:
       SPRING_PROFILES_ACTIVE: ruvds
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5444/hhparser5
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/hhparser5
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
       SPRING_RABBITMQ_HOST: ${RABBITMQ_HOST:-cow-01.rmq2.cloudamqp.com}
@@ -42,9 +42,9 @@ services:
       SPRING_RABBITMQ_VIRTUAL_HOST: ${RABBITMQ_VHOST:-}
       JAVA_OPTS: "-Xmx1g -Xms512m -XX:+UseG1GC"
     ports:
-      - "9696:9696"
+      - "9696:9595"
     volumes:
-      - logs_data:/log-hhparser7
+      - logs_data:/log-hhparser5
     networks:
       - hhparser-network
     restart: unless-stopped
@@ -52,7 +52,7 @@ services:
       postgres:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9696/actuator/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:9595/actuator/health"]
       interval: 30s
       timeout: 10s
       retries: 3

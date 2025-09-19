@@ -92,7 +92,7 @@ show_status() {
     
     echo ""
     echo "🌐 Сетевые подключения:"
-    ss -tulpn | grep -E ":(80|443|9595|5432|9090|3000)" || true
+    ss -tulpn | grep -E ":(80|443|9696|5444|9090|3000)" || true
 }
 
 # Функция показа логов
@@ -238,7 +238,7 @@ health_check() {
     fi
     
     # Проверка приложения
-    if curl -f -s http://localhost:9595/actuator/health > /dev/null; then
+    if curl -f -s http://localhost:9696/actuator/health > /dev/null; then
         echo "✅ HHParser App: Работает"
     else
         echo "❌ HHParser App: Не отвечает"

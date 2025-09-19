@@ -56,7 +56,7 @@ ENV SPRING_PROFILES_ACTIVE=ruvds
 
 # Проверка здоровья приложения
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
-    CMD curl -f http://localhost:9696/actuator/health || exit 1
+    CMD curl -f http://localhost:9595/actuator/health || exit 1
 
 # Запуск приложения
 CMD ["sh", "-c", "java $JAVA_OPTS -jar hhparser5.jar"]
