@@ -43,7 +43,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: jar-artifact
-        path: target-ruvds/hhparser5.jar
+        path: target-ruvds/hhparser7.jar
 
   # Этап сборки Docker образа
   build-docker:
