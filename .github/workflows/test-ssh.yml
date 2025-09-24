@@ -1,0 +1,46 @@
+jobs:
+  deploy:
+    
+    
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    
+    environment: production
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Deploy to production server
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.PROD_HOST }}
+        username: ${{ secrets.PROD_USER }}
+        key: ${{ secrets.PROD_SSH_KEY }}
+        port: ${{ secrets.PROD_PORT }}
+        script: |
+          # Переходим в директорию приложения
+          cd /opt/hhparser || exit 1
+          
+          # Логинимся в GitHub Container Registry
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+          
+          # Останавливаем текущие контейнеры
+          docker compose -f docker-compose.prod.yml down
+          
+          # Обновляем образы
+          docker compose -f docker-compose.prod.yml pull
+          
+          # Удаляем старые образы для экономии места
+          docker image prune -f
+          
+          # Запускаем обновленные контейнеры
+          docker compose -f docker-compose.prod.yml up -d
+          
+          # Проверяем статус контейнеров
+          docker compose -f docker-compose.prod.yml ps
+          
+          # Ждем запуска приложения и проверяем health
+          sleep 30
+          curl -f http://localhost:9696/actuator/health || exit 1
+          
+          echo "Deployment completed successfully!"
